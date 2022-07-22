@@ -1,4 +1,4 @@
-use crate::utils;
+use crate::{mixed_fraction::MixedFraction, utils};
 use num_traits::{PrimInt, Unsigned};
 
 #[derive(Debug, Clone, Copy)]
@@ -389,6 +389,15 @@ impl<T: Unsigned + PrimInt> std::ops::Div for Fraction<T> {
 impl<T: Unsigned + PrimInt> std::ops::DivAssign for Fraction<T> {
     fn div_assign(&mut self, rhs: Self) {
         *self = *self / rhs
+    }
+}
+
+impl<T: Unsigned + PrimInt> From<MixedFraction<T>> for Fraction<T> {
+    fn from(mf: MixedFraction<T>) -> Self {
+        Self::new(
+            mf.whole_part * mf.fraction.denominator + mf.fraction.numerator,
+            mf.fraction.denominator,
+        )
     }
 }
 
