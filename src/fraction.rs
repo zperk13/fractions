@@ -534,12 +534,4 @@ mod tests {
             Some(fraction!(2 / 3))
         );
     }
-
-    #[test]
-    fn temp_test() {
-        println!(
-            "{}",
-            f64::from(fraction!(1_u64 / 10) + fraction!(2_u64 / 10))
-        )
-    }
 }
